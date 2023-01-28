@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="center"
+>
+  <h1>
+    Fuzzy search
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      Search:
+      <input
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+        value=""
+      />
+    </label>
+    <button
+      className="green-button"
+      type="submit"
+    >
+      Search
+    </button>
+    <button
+      className="red-button"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </form>
+</div>
+`;
