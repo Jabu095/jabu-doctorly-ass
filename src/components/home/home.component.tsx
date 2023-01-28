@@ -3,13 +3,19 @@ import React, { useState } from 'react';
 import Fuse from 'fuse.js';
 import { SearchResult } from '../../types';
 import { data } from '../../utils/data';
-
+import './home.css';
   
 const searchData = [...data] as unknown as SearchResult[];
 
 const options = {
     includeScore: true,
     keys: ['name'],
+    shouldSort: true,
+    threshold: 0.4,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1
 };
   
 const fuse = new Fuse(searchData, options);
@@ -44,7 +50,7 @@ const HomeComponent = () => {
             <button type="submit">Search</button>
             </form>
             {showResults && (
-                <div>
+                <div className="search-results-container">
                     {searchResults.map((result,i) => (
                         <div key={i}>{result.name}</div>
                     ))}
