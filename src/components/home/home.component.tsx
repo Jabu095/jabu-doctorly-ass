@@ -16,12 +16,16 @@ const fuse = new Fuse(searchData, options);
 const HomeComponent = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+    const [showResults, setShowResults] = useState(false);
 
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const _searchResults = fuse.search(searchTerm).map(value => value.item);
         if(_searchResults.length > 0){
             setSearchResults(_searchResults);
+            setShowResults(true);
+        }else{
+            setShowResults(false);
         }
     };
 
@@ -39,11 +43,13 @@ const HomeComponent = () => {
             </label>
             <button type="submit">Search</button>
             </form>
-            <div>
-                {searchResults.map((result,i) => (
-                    <div key={i}>{result.name}</div>
-                ))}
-            </div>
+            {showResults && (
+                <div>
+                    {searchResults.map((result,i) => (
+                        <div key={i}>{result.name}</div>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
