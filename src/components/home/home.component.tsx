@@ -1,19 +1,10 @@
 
-import React, { FunctionComponent, useEffect } from 'react';
+import React from 'react';
 
-type Props = {
-    exampleRequest: (data: boolean) => void;
-    home: boolean;
-}
-
-const HomeComponent:FunctionComponent<Props> = ({ home , exampleRequest}) => {
-    useEffect(() => {
-        exampleRequest(false)
-    },[exampleRequest]);
+const HomeComponent = () => {
 
     return (
         <div>
-            <p>Home component {home}</p>
         </div>
     )
 }
