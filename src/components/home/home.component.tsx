@@ -5,6 +5,7 @@ import { SearchResult } from '../../types';
 import { data } from '../../utils/data';
 import Form from 'react-bootstrap/Form';
 import './home.css';
+import { SearchContainer } from './searchContainer';
   
 const searchData = [...data] as unknown as SearchResult[];
 
@@ -103,19 +104,12 @@ const HomeComponent = () => {
             </form>
             
             {showResults && (
-                <div className="search-results-container">
-                    {searchResults.map((result,i) => (
-                        <div 
-                            aria-hidden="true"
-                            key={i} 
-                            onClick={() => handleSelection(result)}
-                            onMouseEnter={() => handleMouseEnter(result)}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            <p>{result.name}</p>
-                        </div>
-                    ))}
-                </div>
+                <SearchContainer 
+                    searchResults={searchResults} 
+                    handleSelection={handleSelection} 
+                    handleMouseEnter={handleMouseEnter} 
+                    handleMouseLeave={handleMouseLeave}
+                />
             )}
             {selectedItem && <div>{selectedItem}</div>}
         </div>
