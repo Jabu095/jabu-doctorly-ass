@@ -91,6 +91,7 @@ const HomeComponent = () => {
                 <label>
                     Search:
                     <input
+                        data-testid="search-element"
                         ref={inputRef}
                         type="text"
                         value={searchTerm}

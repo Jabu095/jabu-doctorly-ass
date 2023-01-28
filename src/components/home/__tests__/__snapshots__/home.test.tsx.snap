@@ -13,6 +13,7 @@ exports[`renders correctly 1`] = `
     <label>
       Search:
       <input
+        data-testid="search-element"
         onChange={[Function]}
         placeholder="Search..."
         type="text"
