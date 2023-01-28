@@ -23,6 +23,7 @@ const HomeComponent = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const [showResults, setShowResults] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
 
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,6 +34,12 @@ const HomeComponent = () => {
         }else{
             setShowResults(false);
         }
+    };
+
+    const handleSelection = (selected: SearchResult) => {
+        setSelectedItem(selected.name);
+        setSearchResults([]);
+        setSearchTerm('');
     };
 
     return (
@@ -52,10 +59,15 @@ const HomeComponent = () => {
             {showResults && (
                 <div className="search-results-container">
                     {searchResults.map((result,i) => (
-                        <div key={i}>{result.name}</div>
+                        <div aria-hidden="true"
+                            key={i} 
+                            onClick={() => handleSelection(result)}>
+                            <p>{result.name}</p>
+                        </div>
                     ))}
                 </div>
             )}
+            {selectedItem && <div>{selectedItem}</div>}
         </div>
     )
 }
