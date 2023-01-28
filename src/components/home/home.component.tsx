@@ -42,20 +42,26 @@ const HomeComponent = () => {
         setSearchTerm('');
     };
 
+    const handleClear = () => {
+        setSearchTerm('');
+        setSearchResults([]);
+    };
+
     return (
         <div>
             <form onSubmit={handleSearch}>
-            <label>
-                Search:
-                <input
-                type="text"
-                value={searchTerm}
-                onChange={event => setSearchTerm(event.target.value)}
-                placeholder="Search..."
-                />
-            </label>
-            <button type="submit">Search</button>
+                <label>
+                    Search:
+                    <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={event => setSearchTerm(event.target.value)}
+                    placeholder="Search..."
+                    />
+                </label>
+                <button type="submit">Search</button>
             </form>
+            <button onClick={handleClear}>Delete</button>
             {showResults && (
                 <div className="search-results-container">
                     {searchResults.map((result,i) => (
