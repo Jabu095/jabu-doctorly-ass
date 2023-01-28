@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Fuse from 'fuse.js';
 import { SearchResult } from '../../types';
 import { data } from '../../utils/data';
+import Form from 'react-bootstrap/Form';
 import './home.css';
   
 const searchData = [...data] as unknown as SearchResult[];
@@ -84,7 +85,8 @@ const HomeComponent = () => {
     }, [inputRef]);
     
     return (
-        <div>
+        <div className="center">
+            <h1>Fuzzy search</h1>
             <form onSubmit={handleSearch}>
                 <label>
                     Search:
@@ -96,9 +98,10 @@ const HomeComponent = () => {
                         placeholder="Search..."
                     />
                 </label>
-                <button type="submit">Search</button>
+                <button className="green-button" type="submit">Search</button>
+                <button className="red-button" onClick={handleClear}>Delete</button>
             </form>
-            <button onClick={handleClear}>Delete</button>
+            
             {showResults && (
                 <div className="search-results-container">
                     {searchResults.map((result,i) => (
