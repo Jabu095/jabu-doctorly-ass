@@ -21,6 +21,11 @@ test('should get input ', () => {
     expect(hasInputValue(input,"ib-u-ron 75 mg 10 Zäpfchen N1")).toBe(true);
 })
 
+test('should have search button ', () => {
+    render(<HomeComponent />);
+    const input = screen.getByTestId('search-button');
+    expect(input).toBeInTheDocument();
+})
 test('renders correctly', () => {
     const tree = renderer
     .create(<HomeComponent />)

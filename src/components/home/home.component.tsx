@@ -99,7 +99,7 @@ const HomeComponent = () => {
                         placeholder="Search..."
                     />
                 </label>
-                <button className="green-button" type="submit">Search</button>
+                <button data-testid="search-button" className="green-button" type="submit">Search</button>
                 <button className="red-button" onClick={handleClear}>Delete</button>
             </form>
             

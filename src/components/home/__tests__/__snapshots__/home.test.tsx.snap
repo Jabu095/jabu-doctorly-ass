@@ -22,6 +22,7 @@ exports[`renders correctly 1`] = `
     </label>
     <button
       className="green-button"
+      data-testid="search-button"
       type="submit"
     >
       Search
