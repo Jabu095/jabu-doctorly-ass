@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Fuse from 'fuse.js';
 import { SearchResult } from '../../types';
 import { data } from '../../utils/data';
-import Form from 'react-bootstrap/Form';
 import './home.css';
 import { SearchContainer } from './searchContainer';
   
