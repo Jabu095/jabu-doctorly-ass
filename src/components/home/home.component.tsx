@@ -14,33 +14,37 @@ const options = {
   
 const fuse = new Fuse(searchData, options);
 const HomeComponent = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-  const handleSearch = (searchTerm: string) => {
-    setSearchTerm(searchTerm);
-    const _searchResults = fuse.search(searchTerm).map(value => value.item);
-    if(_searchResults.length > 0){
-        setSearchResults(_searchResults);
-    }
-  };
+    const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const _searchResults = fuse.search(searchTerm).map(value => value.item);
+        if(_searchResults.length > 0){
+            setSearchResults(_searchResults);
+        }
+    };
 
     return (
-    <div>
-      <div>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={event => handleSearch(event.target.value)}
-          placeholder="Search..."
-        />
-      </div>
-      <div>
-        {searchResults.map((result,i) => (
-          <div key={i}>{result.name}</div>
-        ))}
-      </div>
-    </div>
+        <div>
+            <form onSubmit={handleSearch}>
+            <label>
+                Search:
+                <input
+                type="text"
+                value={searchTerm}
+                onChange={event => setSearchTerm(event.target.value)}
+                placeholder="Search..."
+                />
+            </label>
+            <button type="submit">Search</button>
+            </form>
+            <div>
+                {searchResults.map((result,i) => (
+                    <div key={i}>{result.name}</div>
+                ))}
+            </div>
+        </div>
     )
 }
 
