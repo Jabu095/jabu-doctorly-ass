@@ -24,6 +24,7 @@ const HomeComponent = () => {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const [showResults, setShowResults] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
+    const [previousSearchTerm, setPreviousSearchTerm] = useState('');
 
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -47,16 +48,25 @@ const HomeComponent = () => {
         setSearchResults([]);
     };
 
+    const handleMouseEnter = (result:SearchResult) => {
+        setPreviousSearchTerm(searchTerm);
+        setSearchTerm(result.name);
+    };
+    
+    const handleMouseLeave = () => {
+        setSearchTerm(previousSearchTerm);
+    };
+    
     return (
         <div>
             <form onSubmit={handleSearch}>
                 <label>
                     Search:
                     <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={event => setSearchTerm(event.target.value)}
-                    placeholder="Search..."
+                        type="text"
+                        value={searchTerm}
+                        onChange={event => setSearchTerm(event.target.value)}
+                        placeholder="Search..."
                     />
                 </label>
                 <button type="submit">Search</button>
@@ -65,9 +75,13 @@ const HomeComponent = () => {
             {showResults && (
                 <div className="search-results-container">
                     {searchResults.map((result,i) => (
-                        <div aria-hidden="true"
+                        <div 
+                            aria-hidden="true"
                             key={i} 
-                            onClick={() => handleSelection(result)}>
+                            onClick={() => handleSelection(result)}
+                            onMouseEnter={() => handleMouseEnter(result)}
+                            onMouseLeave={handleMouseLeave}
+                        >
                             <p>{result.name}</p>
                         </div>
                     ))}
